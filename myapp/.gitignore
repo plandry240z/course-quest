@@ -44,3 +44,6 @@ app-example
 
 #firebase
 .env
+
+#for the service account key
+serviceAccountKey.json
