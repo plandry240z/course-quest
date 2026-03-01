@@ -17,7 +17,7 @@ export default function AuthScreen() {
 
   const testHealth = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8080/health");
+      const response = await fetch("http://localhost:8080/health");
       const data = await response.json();
       console.log("Health check response:", data);
     } catch (err) {
