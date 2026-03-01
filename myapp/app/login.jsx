@@ -30,7 +30,7 @@ export default function AuthScreen() {
     try {
       const credential = await createUserWithEmailAndPassword(auth, email.trim(), password);
       setUserEmail(credential.user.email || "");
-      router.replace('/profile');
+      router.replace('/questions');
     } catch (err) {
       setError(err.message);
     }

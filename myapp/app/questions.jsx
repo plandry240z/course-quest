@@ -12,10 +12,30 @@ export default function HomePage({ navigation }) {
     const [major, setMajor] = useState('');
     const [year, setYear] = useState('');
 
-    const handleSubmit = () => {
-        console.log({ school, major, year });
-        router.push('/screens/Profile');
-    };
+const API_URL = "http://172.31.191.231:8080";
+
+const handleSubmit = async () => {
+    try {
+        const response = await fetch(`${API_URL}/profile`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userID: "testuser123",
+                name: "Test User",
+                school,
+                major,
+                year
+            })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            router.push('/screens/Profile');
+        }
+    } catch (error) {
+        console.error("Error saving profile:", error);
+    }
+};
 
     return (
         <View style={common.screen}>

@@ -3,7 +3,7 @@ import { common } from "../src/Styles/common";
 import { profile } from "../src/Styles/profile";
 import { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "http://172.31.191.231:8080";
 
 
 export default function Profile() {

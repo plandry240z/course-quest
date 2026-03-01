@@ -14,6 +14,7 @@ app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
+/*
 // ← verifyToken goes here, after setup but before routes
 async function verifyToken(req, res, next) {
   const token = req.headers.authorization;
@@ -29,11 +30,11 @@ async function verifyToken(req, res, next) {
   }
 }
 
+*/
 
-app.post("/profile", verifyToken, async (req, res) => {
+app.post("/profile", async (req, res) => {
   try {
-    const {name, major, year, school} = req.body;
-    const userID = req.userID;
+    const {userID, name, major, year, school} = req.body;
     await db.collection("profile").doc(userID).set({name, major, year, school});
     res.status(201).json({success:true});
   }
@@ -43,7 +44,7 @@ app.post("/profile", verifyToken, async (req, res) => {
 });
 
 
-app.get("/profile/:userID", verifyToken, async (req, res) => {
+app.get("/profile/:userID", async (req, res) => {
   try {
     const doc = await db.collection("profile").doc(req.params.userID).get();
     if (!doc.exists) return res.status(404).json({ error: "Profile not found" });
