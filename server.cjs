@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { db, admin } = require("./firebase");
+const { db, admin } = require("./firebase-admin.cjs");
 
 
 // Creating the app
@@ -10,6 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", (req, res) => {
+  res.json({ ok: true });
+});
 
 // ← verifyToken goes here, after setup but before routes
 async function verifyToken(req, res, next) {

@@ -6,7 +6,8 @@ import { auth, db } from "../src/services/firebase";
 import { common } from "../src/Styles/common";
 import { login } from "../src/Styles/login";
 import { colors } from "../src/Styles/theme";
-import {router} from "expo-router";
+import { router } from "expo-router";
+import { createProfile } from "../src/services/api";
 
 export default function AuthScreen() {
   const [email, setEmail] = useState("");
@@ -14,12 +15,22 @@ export default function AuthScreen() {
   const [error, setError] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
+  const testHealth = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8080/health");
+      const data = await response.json();
+      console.log("Health check response:", data);
+    } catch (err) {
+      console.error("Health check failed:", err);
+    }
+  };
+
   const handleSignUp = async () => {
     setError("");
     try {
       const credential = await createUserWithEmailAndPassword(auth, email.trim(), password);
       setUserEmail(credential.user.email || "");
-    router.replace('/profile');
+      router.replace('/profile');
     } catch (err) {
       setError(err.message);
     }
@@ -30,6 +41,15 @@ export default function AuthScreen() {
     try {
       const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
       setUserEmail(credential.user.email || "");
+
+      //test the back
+      await createProfile({
+        name: "Test User",
+        year: "Sophomore",
+        major: "Computer Science",
+        school: "Test University",
+      });
+      router.replace('/profile');
     } catch (err) {
       setError(err.message);
     }
@@ -65,7 +85,7 @@ export default function AuthScreen() {
 
       <TextInput
         placeholder="Email"
-        placeholderTextColor ={colors.stone}
+        placeholderTextColor={colors.stone}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -75,7 +95,7 @@ export default function AuthScreen() {
 
       <TextInput
         placeholder="Password (min 6 chars)"
-        placeholderTextColor ={colors.stone}
+        placeholderTextColor={colors.stone}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -93,6 +113,9 @@ export default function AuthScreen() {
       </TouchableOpacity>
       <TouchableOpacity style={login.loginButton} onPress={testFirestoreWrite}>
         <Text style={login.loginButtonText}>Test Firestore Write</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={login.loginButton} onPress={testHealth}>
+        <Text style={login.loginButtonText}>Test Backend Health</Text>
       </TouchableOpacity>
 
       {userEmail ? <Text style={login.statusText}>Logged in as: {userEmail}</Text> : null}

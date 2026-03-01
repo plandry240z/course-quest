@@ -1,0 +1,26 @@
+{
+  "type": "commonjs",
+  "name": "course-quest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plandry240z/course-quest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plandry240z/course-quest/issues"
+  },
+  "homepage": "https://github.com/plandry240z/course-quest#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.7.0"
+  }
+}
