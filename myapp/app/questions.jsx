@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { TouchableOpacity, Text, View, TextInput } from "react-native";
 import { useRouter } from "expo-router";
-import { login } from "../src/Styles/login";
+import { common } from "../src/Styles/login";
 import { colors } from "../src/Styles/theme";
-//import { questions } from "../src/Styles/questions";
+import { questions } from "../src/Styles/questions";
 
 
 export default function HomePage({ navigation }) {
@@ -12,19 +12,14 @@ export default function HomePage({ navigation }) {
     const [major, setMajor] = useState('');
     const [year, setYear] = useState('');
 
-
     const handleSubmit = () => {
         console.log({ school, major, year });
         router.push('/screens/Profile');
     };
 
-
-
-
     return (
         <View style={common.screen}>
             <Text style={questions.title}>Create Your Profile</Text>
-
 
             <View style={questions.form}>
                 <Text style={questions.subtitle}>School:</Text>
