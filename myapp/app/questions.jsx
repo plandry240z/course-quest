@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { TouchableOpacity, Text, View, TextInput } from "react-native";
 import { useRouter } from "expo-router";
-import { common } from "../../src/styles/common";
-import { colors } from "../../src/styles/theme";
-import { questions } from "../../src/styles/questions";
+import { login } from "../src/Styles/login";
+import { colors } from "../src/Styles/theme";
+//import { questions } from "../src/Styles/questions";
 
 
 export default function HomePage({ navigation }) {

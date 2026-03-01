@@ -1,7 +1,7 @@
 import { TouchableOpacity, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { common } from "../../src/styles/common";
-import { colors } from "../../src/styles/theme";
+import { common } from "../src/Styles/common";
+import { colors } from "../src/Styles/theme";
 
 
 export default function HomeScreen({ navigation }) {

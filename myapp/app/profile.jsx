@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
-import { common } from "../../src/styles/common";
-import { profile } from "../../src/styles/profile";
+import { common } from "../src/Styles/common";
+import { profile } from "../src/Styles/profile";
 
 
 export default function Profile() {

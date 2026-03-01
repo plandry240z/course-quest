@@ -6,6 +6,7 @@ import { auth, db } from "../src/services/firebase";
 import { common } from "../src/Styles/common";
 import { login } from "../src/Styles/login";
 import { colors } from "../src/Styles/theme";
+import {router} from "expo-router";
 
 export default function AuthScreen() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ export default function AuthScreen() {
     try {
       const credential = await createUserWithEmailAndPassword(auth, email.trim(), password);
       setUserEmail(credential.user.email || "");
+    router.replace('/profile');
     } catch (err) {
       setError(err.message);
     }
