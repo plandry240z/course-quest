@@ -56,11 +56,9 @@ app.get("/profile/:userID", async (req, res) => {
 
 
 // Starting the server
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(8080, () => console.log("Server running on port 8080"));
+}
 
-
-app.listen(8080, () => console.log("Server running on port 8080"));
-
-
-
-
-
+// Export for Vercel
+module.exports = app;
