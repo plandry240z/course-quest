@@ -5,7 +5,7 @@ export const login = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 75,
-    backgroundColor: 'red',
+    backgroundColor: "red",
     marginTop: 30,
     marginBottom: 10,
   },
@@ -35,6 +35,9 @@ inputText: {
     fontSize: 20,
     marginBottom: 10,
     marginTop: 15,
+    width: '90%',
+    alignSelf: 'center',
+    color: colors.black,
   },
 
 
@@ -43,11 +46,39 @@ loginButton: {
     padding: 16,
     borderRadius: 50,
     marginTop: 10,
-    },
+    width: '90%',
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
 
+loginButtonText:{
+    color: colors.white,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+},
+
+signUpLinkWrap:{
+  marginTop:20,
+  alignItems: 'center',
+},
 
 signUpText: {
-    fontSize: 15,
-    marginTop: 140,
+  color: colors.stone,
+  fontSize: 16,
+  textDecorationLine: 'underline',
 },
+
+errorText: {
+  color: colors.red,
+  fontSize: 16,
+  marginTop: 10,
+  textAlign: 'center',
+},
+statusText: {
+  color: colors.green,
+  fontSize: 16,
+  marginTop: 10,
+  textAlign: 'center',
+}
 });
