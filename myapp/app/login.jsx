@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../src/services/firebase";
+import { common } from "../src/Styles/common";
+import { login } from "../src/Styles/login";
+import { colors } from "../src/Styles/theme";
 
 export default function AuthScreen() {
   const [email, setEmail] = useState("");
@@ -54,52 +57,44 @@ export default function AuthScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Authentication</Text>
+    <View style={login.container}>
+      <View style={login.circle} />
+      <Text style={login.welcomeText}>Welcome to Course Quest!</Text>
 
       <TextInput
         placeholder="Email"
+        placeholderTextColor ={colors.stone}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
-        style={styles.input}
+        style={login.textInput}
       />
 
       <TextInput
         placeholder="Password (min 6 chars)"
+        placeholderTextColor ={colors.stone}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        style={styles.input}
+        style={login.textInput}
       />
 
-      <Button title="Sign Up" onPress={handleSignUp} />
-      <Button title="Log In" onPress={handleLogin} />
-      <Button title="Log Out" onPress={handleLogout} />
-      <Button title="Test Firestore Write" onPress={testFirestoreWrite} />
+      <TouchableOpacity style={login.signUpLinkWrap} onPress={handleSignUp}>
+        <Text style={login.signUpText}>Don't have an account? Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={login.loginButton} onPress={handleLogin}>
+        <Text style={login.loginButtonText}>Log In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={login.loginButton} onPress={handleLogout}>
+        <Text>Log Out</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={login.loginButton} onPress={testFirestoreWrite}>
+        <Text style={login.loginButtonText}>Test Firestore Write</Text>
+      </TouchableOpacity>
 
-      {userEmail ? <Text>Logged in as: {userEmail}</Text> : null}
-      {error ? <Text style={styles.error}>{error}</Text> : null}
+      {userEmail ? <Text style={login.statusText}>Logged in as: {userEmail}</Text> : null}
+      {error ? <Text style={login.errorText}>{error}</Text> : null}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    gap: 12,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "600",
-  },
-  input: {
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-  },
-  error: {
-    color: "red",
-  },
-});
